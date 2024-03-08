@@ -1,0 +1,29 @@
+extends layout
+
+block content
+
+    div.container
+        div.search-column
+            img(src='/images/GOTChars.jpg', alt='My Image')
+
+            h1 Character Search
+            form(action="/search" method="POST")
+                input(type="text" name="name" placeholder="Enter character name" required)
+                button(type="submit") Search
+
+
+
+        div.results-column
+            if characters && characters.length > 0
+                h2 Search Results
+                ul.characters-list
+                    each character in characters
+                        li.character-item
+                            h3= character.name
+                            p Gender: #{character.gender}
+                            p Culture: #{character.culture}
+                            p Born: #{character.born}
+                            p Played By: #{character.playedBy}
+                            p Aliases: #{character.aliases}
+            else if characters && characters.length === 0
+                p No characters found.
